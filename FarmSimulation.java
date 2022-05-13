@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.Random;
 import java.text.SimpleDateFormat;
 
 class BMI {
@@ -238,6 +239,33 @@ class Horse extends Mammal{
     public void runAway(){
         System.out.println(super.species + " is running away..........\nOh coming back");
     }
+}
+
+class Cow extends Mammal{
+    private double milkAmountL= 0;
+
+    public Cow(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC){
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+
+
+    }
+
+    public void produceMilk() {
+        if (!this.isAlive())
+            return;
+
+        if (!this.isAlive() && this.mammaryGland){
+            double random = new Random().nextDouble();
+            double result = 0 + (random * (2));
+            this.milkAmountL += result;
+            System.out.println("Producing milk....");
+        }else
+            System.out.println("Cannot produce milk");
+
+        System.out.println();
+    }
+
+
 }
 
 class Main{
