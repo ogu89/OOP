@@ -105,15 +105,15 @@ class Animal {
 }
 
 class Mammal extends Animal {
-    private double furLengthCm;
-    private String furType;
-    private int toothCounter;
-    private double bodyTemperatureC;
-    private double avgBodyTemperatureC;
-    private boolean mammaryGland = false;
+    protected double furLengthCm;
+    protected String furType;
+    protected int toothCounter;
+    protected double bodyTemperatureC;
+    protected double avgBodyTemperatureC;
+    protected boolean mammaryGland = false;
 
-    private boolean sweatGland = true;
-    private boolean isPregnant = false;
+    protected boolean sweatGland = true;
+    protected boolean isPregnant = false;
 
     public Mammal(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex,
             double furLengthCm, String furType, double avgBodyTemperatureC) {
@@ -222,4 +222,26 @@ class Mammal extends Animal {
         System.out.println("this" + this.species + " is eating with its single lower jaw");
     }
 
+}
+
+
+class Horse extends Mammal{
+    private double pace;
+
+    public Horse(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double pace){
+
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+
+        this.pace = pace;
+    }
+
+    public void runAway(){
+        System.out.println(super.species + " is running away..........\nOh coming back");
+    }
+}
+
+class Main{
+    public static void main(String[] args){
+        
+    }
 }
