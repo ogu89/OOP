@@ -24,6 +24,7 @@ class BMI {
     }
 }
 
+
 class Animal {
     protected String species;
     protected BMI bmi;
@@ -103,6 +104,10 @@ class Animal {
     public String dateCreated() {
         return new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(this.spawnTime);
     }
+}
+
+class Barn{
+
 }
 
 class Mammal extends Animal {
@@ -225,6 +230,19 @@ class Mammal extends Animal {
 
 }
 
+// Person class
+class Person extends Mammal{
+    protected double money;
+    protected Barn barn;
+
+    public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, dobule avgBodyTemperatureC, double money){
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+
+        this.money = money;
+        this.barn = new Barn();
+    }
+}
+
 // Brid class
 class Bird extends Animal{
     protected String featherColor;
@@ -331,6 +349,8 @@ class Parrot extends Bird{
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
     }
 }
+
+
 
 class Main{
     public static void main(String[] args){
