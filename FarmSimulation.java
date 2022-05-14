@@ -313,6 +313,25 @@ class Cow extends Mammal{
     }
 }
 
+class Chicken extends Bird{
+    protected String eggColor;
+
+    public Chicken(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor,double wingSpanM, String beakType, String eggColor){
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType)
+        this.eggColor = eggColor;
+
+
+    }
+}
+
+class Parrot extends Bird{
+    protected String[] phraseMemory;
+
+    public Parrot(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor, double wingSpanM, String beakType, String eggColor){
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
+    }
+}
+
 class Main{
     public static void main(String[] args){
         
