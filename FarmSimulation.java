@@ -225,7 +225,50 @@ class Mammal extends Animal {
 
 }
 
+// Brid class
+class Bird extends Animal{
+    protected String featherColor;
+    protected double wingSpanM;
+    protected String beakType;
+    protected double bodyTemperatureC;
+    protected double avgBodyTemperatureC;
+    
+    public Bird(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC,String featherColor, double wingSpanM, String beakType){
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex);
 
+    
+        this.featherColor = featherColor;
+        this.wingSpanM = wingSpanM;
+        this.beakType = beakType;
+        this.avgBodyTemperatureC = avgBodyTemperatureC;
+        this.bodyTemperatureC = this.avgBodyTemperatureC;
+
+    }
+
+    public void squawk(){
+        System.out.println("Squawwwwwwwwwwwwwwwwwwwwwwwk");
+    }
+
+    public void fly(){
+        System.out.println("flying somewhere");
+    }
+}
+
+
+
+
+class Person extends Mammal{
+    private double money;
+    public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double pace){
+        
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+
+
+    }
+
+}
+
+// Horse class 
 class Horse extends Mammal{
     private double pace;
 
@@ -241,6 +284,10 @@ class Horse extends Mammal{
     }
 }
 
+
+
+
+// Cow class
 class Cow extends Mammal{
     private double milkAmountL= 0;
 
@@ -264,8 +311,6 @@ class Cow extends Mammal{
 
         System.out.println();
     }
-
-
 }
 
 class Main{
