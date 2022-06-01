@@ -274,18 +274,6 @@ class Bird extends Animal{
 
 
 
-
-class Person extends Mammal{
-    private double money;
-    public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double pace){
-        
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
-
-
-    }
-
-}
-
 // Horse class 
 class Horse extends Mammal{
     private double pace;
@@ -338,7 +326,7 @@ class Chicken extends Bird{
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType)
         this.eggColor = eggColor;
 
-
+        
     }
 }
 
