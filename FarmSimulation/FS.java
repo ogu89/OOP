@@ -1,3 +1,4 @@
+package FarmSimulation;
 import java.util.Date;
 import java.util.Random;
 import java.text.SimpleDateFormat;
@@ -235,7 +236,7 @@ class Person extends Mammal{
     protected double money;
     protected Barn barn;
 
-    public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, dobule avgBodyTemperatureC, double money){
+    public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double money){
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
 
         this.money = money;
@@ -323,7 +324,7 @@ class Chicken extends Bird{
     protected String eggColor;
 
     public Chicken(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor,double wingSpanM, String beakType, String eggColor){
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType)
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
         this.eggColor = eggColor;
 
         
@@ -342,6 +343,6 @@ class Parrot extends Bird{
 
 class Main{
     public static void main(String[] args){
-        
+        System.out.println("test");
     }
 }
