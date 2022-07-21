@@ -1,5 +1,7 @@
 import java.util.Date;
 import java.util.Random;
+import java.util.Arrays; 
+import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 
 class BMI {
@@ -227,7 +229,6 @@ class Mammal extends Animal {
         this.bite();
         System.out.println("this" + this.species + " is eating with its single lower jaw");
     }
-
 }
 
 // Person class
@@ -243,6 +244,50 @@ class Person extends Mammal{
     }
 }
 
+// Horse class 
+class Horse extends Mammal{
+    private double pace;
+
+    public Horse(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double pace){
+
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+
+        this.pace = pace;
+    }
+
+    public void runAway(){
+        System.out.println(super.species + " is running away..........\nOh coming back");
+    }
+    
+    public void horsePace(){
+        System.out.println("This horse pace is" + String.valueOf(this.pace) + "(KM)");
+    }
+}
+
+// Cow class
+class Cow extends Mammal{
+    private double milkAmountL= 0;
+
+    public Cow(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC){
+        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+
+    }
+
+    public void produceMilk() {
+        if (!this.isAlive())
+            return;
+
+        if (!this.isAlive() && this.mammaryGland){
+            double random = new Random().nextDouble();
+            double result = 0 + (random * (2));
+            this.milkAmountL += result;
+            System.out.println("Producing milk....");
+        }else
+            System.out.println("Cannot produce milk");
+        System.out.println("This cow has "+ String.valueOf(this.milkAmountL) + " of milk(L)" );
+    }
+}
+
 // Brid class
 class Bird extends Animal{
     protected String featherColor;
@@ -254,7 +299,6 @@ class Bird extends Animal{
     public Bird(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC,String featherColor, double wingSpanM, String beakType){
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex);
 
-    
         this.featherColor = featherColor;
         this.wingSpanM = wingSpanM;
         this.beakType = beakType;
@@ -272,55 +316,8 @@ class Bird extends Animal{
     }
 }
 
-
-
-// Horse class 
-class Horse extends Mammal{
-    private double pace;
-
-    public Horse(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double pace){
-
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
-
-        this.pace = pace;
-    }
-
-    public void runAway(){
-        System.out.println(super.species + " is running away..........\nOh coming back");
-    }
-}
-
-
-
-
-// Cow class
-class Cow extends Mammal{
-    protected double milkAmountL= 0;
-
-    public Cow(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC){
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
-
-
-    }
-
-    public void produceMilk() {
-        if (!this.isAlive())
-            return;
-
-        if (!this.isAlive() && this.mammaryGland){
-            double random = new Random().nextDouble();
-            double result = 0 + (random * (2));
-            this.milkAmountL += result;
-            System.out.println("Producing milk....");
-        }else
-            System.out.println("Cannot produce milk");
-
-        System.out.println();
-    }
-}
-
 class Chicken extends Bird{
-    protected String eggColor;
+    private String eggColor;
 
     public Chicken(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor,double wingSpanM, String beakType, String eggColor){
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
@@ -331,10 +328,22 @@ class Chicken extends Bird{
 }
 
 class Parrot extends Bird{
-    protected String[] phraseMemory;
+    // private ArrayList<Integer> nums = new ArrayList<Integer>();
+    private ArrayList<String> phraseMemory = new ArrayList<String>();
 
-    public Parrot(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor, double wingSpanM, String beakType, String eggColor){
+    public Parrot(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor, double wingSpanM, String beakType){
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
+    }
+
+    public void memoriseWord(String word){
+        this.phraseMemory.add(word);
+    }
+    public void talk(){
+        Random rand = new Random();
+
+        int randomNum = rand.nextInt((this.phraseMemory.size() - 0) + 1) + 0;
+
+        System.out.println(this.phraseMemory.get(randomNum));
     }
 }
 
