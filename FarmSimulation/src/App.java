@@ -108,9 +108,6 @@ class Animal {
     }
 }
 
-class Barn{
-
-}
 
 class Mammal extends Animal {
     protected double furLengthCm;
@@ -233,16 +230,32 @@ class Mammal extends Animal {
 
 // Person class
 class Person extends Mammal{
-    protected double money;
-    protected Barn barn;
+    private double money;
+    private Barn barn;
 
     public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double money){
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
-
         this.money = money;
         this.barn = new Barn();
     }
+
+    public void showMoney(){
+        System.out.println(this.money);
+        System.out.println(this.barn);
+    }
+
+    
 }
+
+class Barn{
+    private ArrayList<String> animalArray = new ArrayList<String>();
+
+    public Barn(){}
+
+
+}
+
+
 
 // Horse class 
 class Horse extends Mammal{
@@ -323,7 +336,10 @@ class Chicken extends Bird{
         super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
         this.eggColor = eggColor;
 
-        
+    }
+
+    public void showEgg(){
+        System.out.println(eggColor);
     }
 }
 
@@ -352,5 +368,7 @@ class Parrot extends Bird{
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("test");
+        System.out.println("This is test");
+
     }
 }
