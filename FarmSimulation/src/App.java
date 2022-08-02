@@ -1,6 +1,5 @@
 import java.util.Date;
 import java.util.Random;
-import java.util.Arrays; 
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 
@@ -94,7 +93,7 @@ class Animal {
     }
 
     public String toString() {
-        return this.species + this.bmi + " lives " + this.lifeSpanDays + " days/" + "gender:" + this.biologicalSex + "."
+        return this.species + ": " + this.bmi + " lives " + this.lifeSpanDays + " days/" + "gender:" + this.biologicalSex + "."
                 + this.status();
     }
 
@@ -253,6 +252,18 @@ class Barn{
     public Barn(){}
 
 
+    public void addAnimal(amimal){
+        animalArray.add(animal)
+    }
+
+    public void showarray(){
+        System.out.println(this.animalArray);
+    }
+
+    public String toString(){
+        return animalArray.toString();
+    }
+    
 }
 
 
@@ -367,8 +378,26 @@ class Parrot extends Bird{
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("test");
-        System.out.println("This is test");
 
+
+        Person ken = new Person("Human", 175.5, 70.3, 700800, "male", 0.2, "Human", 36.3, 100);
+        Cow cowcow = new Cow("Cow", 100.2, 60, 5555, "female", 0.5, "Cow Fur", 38.4);
+        Horse horrrse = new Horse("Horse", 130, 50, 1000, "male", 1, "Horse fur", 30, 40);
+        Chicken chicken = new Chicken("Chicken", 40, 20, 2000, "female", 2, "Chicken fur", 0.5, "hard ans sharp", "white and brown");
+        
+
+
+
+        System.out.println();
+        System.out.println(ken);
+        System.out.println();
+        System.out.println(cowcow);
+        System.out.println();
+        System.out.println(horrrse);
+        System.out.println();
+        System.out.println(chicken);
+        System.out.println();
+        ken.showMoney();
+        
     }
 }
