@@ -144,18 +144,6 @@ class Mammal extends Animal {
         System.out.println();
     }
 
-    public void produceMilk() {
-        if (!this.isAlive())
-            return;
-
-        if (!this.isAlive() && this.mammaryGland)
-            System.out.println("Producing milk....");
-        else
-            System.out.println("Cannot produce milk");
-
-        System.out.println();
-    }
-
     public void mate(Mammal mammal) {
         if (!this.isAlive())
             return;
@@ -214,7 +202,7 @@ class Mammal extends Animal {
     }
 
     public String toString(){
-        return super.toString() + this.mammalInformation();
+        return super.toString() + " & " + this.mammalInformation();
     }
 
     public String mammalInformation(){
@@ -229,40 +217,78 @@ class Mammal extends Animal {
 
 // Person class
 class Person extends Mammal{
-    private double money;
+    private double moneyAUD;
     private Barn barn;
+    private double milkContainerL = 0.0;
+    private int eggContainer = 0;
 
-    public Person(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double money){
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
-        this.money = money;
+
+    public Person(double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, double moneyAUD){
+        super("Human", heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, "Human fur", 36.3);
+        this.moneyAUD = moneyAUD;
         this.barn = new Barn();
     }
 
+    public void getCowMilk(){
+        milkContainerL += this.barn.produceCowMilk();
+        System.out.println(milkContainerL);
+    }
+
     public void showMoney(){
-        System.out.println(this.money);
+        System.out.println(this.moneyAUD);
+    }
+
+    public void showBarn(){
         System.out.println(this.barn);
     }
 
-    
+
+
+    //Question
+    // public void startKeepingAnimal(Animal animal){
+    //     this.barn.addAnimal(animal);
+    // }
+
+    public void startKeepingAnimal(Animal animal){
+        this.barn.addAnimal(animal);
+    }
 }
 
 class Barn{
-    private ArrayList<String> animalArray = new ArrayList<String>();
+    private ArrayList<Animal> animalArray = new ArrayList<Animal>();
 
     public Barn(){}
 
+    //Question
+    // public void addAnimal(Animal animal){
+    //     animalArray.add(animal);
+    // }
 
-    public void addAnimal(amimal){
-        animalArray.add(animal)
-    }
-
-    public void showarray(){
-        System.out.println(this.animalArray);
+    public void addAnimal(Animal animal){
+        animalArray.add(animal);
     }
 
     public String toString(){
         return animalArray.toString();
     }
+
+    public double produceCowMilk(){
+        double keepMilk = 0;
+        for(int i = 0; i < animalArray.size(); i++){
+            System.out.println(animalArray.get(i).getClass());
+            if(animalArray.get(i).species == "Cow"){
+                System.out.println(animalArray.get(i));
+                // System.out.println(animalArray.get(i).getClass());
+                keepMilk += ((Cow) animalArray.get(i)).produceMilk();
+            } 
+        }
+        return keepMilk;
+    }
+
+
+
+
+
     
 }
 
@@ -272,9 +298,9 @@ class Barn{
 class Horse extends Mammal{
     private double pace;
 
-    public Horse(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC, double pace){
+    public Horse(double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, double pace){
 
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+        super("Horse", heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, "Horse fur", 37.9);
 
         this.pace = pace;
     }
@@ -286,29 +312,41 @@ class Horse extends Mammal{
     public void horsePace(){
         System.out.println("This horse pace is" + String.valueOf(this.pace) + "(KM)");
     }
+
+    public String toString(){
+        return "This is horse";
+    }
+
 }
 
 // Cow class
 class Cow extends Mammal{
-    private double milkAmountL= 0;
 
-    public Cow(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm, String furType, double avgBodyTemperatureC){
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, furType, avgBodyTemperatureC);
+    public Cow(double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double furLengthCm){
+        super("Cow", heightM, weightKg, lifeSpanDays, biologicalSex, furLengthCm, "Cow fur", 38.4);
 
     }
 
-    public void produceMilk() {
+    public double produceMilk() {
+        double milkL = 0;
+        System.out.println("ok");
         if (!this.isAlive())
-            return;
+            return 0;
 
         if (!this.isAlive() && this.mammaryGland){
             double random = new Random().nextDouble();
-            double result = 0 + (random * (2));
-            this.milkAmountL += result;
+            milkL = 0 + (random * (2));
             System.out.println("Producing milk....");
         }else
             System.out.println("Cannot produce milk");
-        System.out.println("This cow has "+ String.valueOf(this.milkAmountL) + " of milk(L)" );
+
+        // System.out.println("This cow has "+ String.valueOf(this.milkAmountL) + " of milk(L)" );
+
+        return milkL;
+    }
+
+    public void print(){
+        System.out.println("weeeeee");
     }
 }
 
@@ -328,7 +366,6 @@ class Bird extends Animal{
         this.beakType = beakType;
         this.avgBodyTemperatureC = avgBodyTemperatureC;
         this.bodyTemperatureC = this.avgBodyTemperatureC;
-
     }
 
     public void squawk(){
@@ -343,8 +380,8 @@ class Bird extends Animal{
 class Chicken extends Bird{
     private String eggColor;
 
-    public Chicken(String species, double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor,double wingSpanM, String beakType, String eggColor){
-        super(species, heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
+    public Chicken(double heightM, double weightKg, double lifeSpanDays, String biologicalSex, double avgBodyTemperatureC, String featherColor,double wingSpanM, String beakType, String eggColor){
+        super("Chicken", heightM, weightKg, lifeSpanDays, biologicalSex, avgBodyTemperatureC, featherColor, wingSpanM, beakType);
         this.eggColor = eggColor;
 
     }
@@ -352,6 +389,20 @@ class Chicken extends Bird{
     public void showEgg(){
         System.out.println(eggColor);
     }
+
+    // public void produceEggs() {
+    //     if (!this.isAlive())
+    //         return;
+
+    //     if (!this.isAlive() && this.mammaryGland){
+    //         double random = new Random().nextDouble();
+    //         double result = 0 + (random * (2));
+    //         this.milkAmountL += result;
+    //         System.out.println("Producing milk....");
+    //     }else
+    //         System.out.println("Cannot produce milk");
+    //     System.out.println("This cow has "+ String.valueOf(this.milkAmountL) + " of milk(L)" );
+    // }
 }
 
 class Parrot extends Bird{
@@ -380,12 +431,11 @@ public class App {
     public static void main(String[] args) throws Exception {
 
 
-        Person ken = new Person("Human", 175.5, 70.3, 700800, "male", 0.2, "Human", 36.3, 100);
-        Cow cowcow = new Cow("Cow", 100.2, 60, 5555, "female", 0.5, "Cow Fur", 38.4);
-        Horse horrrse = new Horse("Horse", 130, 50, 1000, "male", 1, "Horse fur", 30, 40);
-        Chicken chicken = new Chicken("Chicken", 40, 20, 2000, "female", 2, "Chicken fur", 0.5, "hard ans sharp", "white and brown");
+        Person ken = new Person(175.5, 70.3, 700800, "male", 0.2, 100);
+        Cow cowcow = new Cow(100.2, 60, 5555, "female", 0.5);
+        Horse horrrse = new Horse( 130, 50, 1000, "male", 1, 40);
+        Chicken chicken = new Chicken(40, 20, 2000, "female", 2, "Brown", 0.5, "hard ans sharp", "white and brown");
         
-
 
 
         System.out.println();
@@ -397,7 +447,16 @@ public class App {
         System.out.println();
         System.out.println(chicken);
         System.out.println();
+        ken.startKeepingAnimal(cowcow);
+        ken.startKeepingAnimal(horrrse);
+        ken.startKeepingAnimal(chicken);
+        System.out.println();
         ken.showMoney();
+        ken.showBarn();
+        System.out.println();
+        ken.getCowMilk();
+        
+
         
     }
 }
