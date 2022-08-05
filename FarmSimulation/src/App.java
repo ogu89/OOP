@@ -1,7 +1,9 @@
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
+
 
 class BMI {
     private double heightM;
@@ -231,9 +233,44 @@ class Person extends Mammal{
 
     public void getCowMilk(){
         milkContainerL += this.barn.produceCowMilk();
-        System.out.println(milkContainerL);
     }
 
+    public void getChickenEgg(){
+        eggContainer += this.barn.produceChickenEgg();
+    }
+
+    public void sellMilk(){
+        if (this.milkContainerL == 0) System.out.println("There is no milk to sell");
+        double money = this.milkContainerL * 1.5;
+        this.milkContainerL = 0;
+        System.out.println("You got $" + String.valueOf(money));
+        this.moneyAUD += money;
+    }
+
+    public void sellEgg(){
+        if(this.eggContainer == 0)System.out.println("There is not egg to sell");
+        double money = this.eggContainer * 0.7;
+        this.eggContainer = 0;
+        System.out.print("You got " + String.valueOf(money));
+        this.moneyAUD += money;
+    }
+
+    public void sellAllAnimal(){
+        double cowRatio = 5.5;
+        double chickenRatio = 3.3;
+        double horseRatio = 4.7;
+
+        double sellingPrice = 0;
+
+        for(int i = 0; i < this.barn.getAnimalArray().size(); i++){
+
+            if(this.barn.getAnimalArray().get(i) instanceof Horse) sellingPrice += ((Horse) this.barn.getAnimalArray().get(i)).getPace();
+            else sellingPrice += this.barn.getAnimalArray().get(i).bmi.getWeightKg();
+
+            this.moneyAUD += sellingPrice;
+
+        }
+    }
     public void showMoney(){
         System.out.println(this.moneyAUD);
     }
@@ -264,6 +301,10 @@ class Barn{
     //     animalArray.add(animal);
     // }
 
+    public ArrayList<Animal> getAnimalArray(){
+        return animalArray;
+    }
+
     public void addAnimal(Animal animal){
         animalArray.add(animal);
     }
@@ -275,9 +316,8 @@ class Barn{
     public double produceCowMilk(){
         double keepMilk = 0;
         for(int i = 0; i < animalArray.size(); i++){
-            System.out.println(animalArray.get(i).getClass());
-            if(animalArray.get(i).species == "Cow"){
-                System.out.println(animalArray.get(i));
+            // System.out.println(animalArray.get(i).getClass());
+            if(animalArray.get(i) instanceof Cow){
                 // System.out.println(animalArray.get(i).getClass());
                 keepMilk += ((Cow) animalArray.get(i)).produceMilk();
             } 
@@ -285,11 +325,15 @@ class Barn{
         return keepMilk;
     }
 
-
-
-
-
-    
+    public int produceChickenEgg(){
+        int keepEgg = 0;
+        for(int i = 0; i < animalArray.size(); i++){
+            if(animalArray.get(i) instanceof Chicken){
+                keepEgg += ((Chicken) animalArray.get(i)).produceEgg();
+            }
+        }
+        return keepEgg;
+    }
 }
 
 
@@ -313,6 +357,10 @@ class Horse extends Mammal{
         System.out.println("This horse pace is" + String.valueOf(this.pace) + "(KM)");
     }
 
+    public double getPace(){
+        return this.pace;
+    }
+
     public String toString(){
         return "This is horse";
     }
@@ -329,13 +377,12 @@ class Cow extends Mammal{
 
     public double produceMilk() {
         double milkL = 0;
-        System.out.println("ok");
         if (!this.isAlive())
             return 0;
 
-        if (!this.isAlive() && this.mammaryGland){
+        if (this.isPregnant()&& this.mammaryGland){
             double random = new Random().nextDouble();
-            milkL = 0 + (random * (2));
+            milkL =  0 +Math.round( (random * (20)) )  / 10.0;
             System.out.println("Producing milk....");
         }else
             System.out.println("Cannot produce milk");
@@ -387,7 +434,20 @@ class Chicken extends Bird{
     }
 
     public void showEgg(){
+        
         System.out.println(eggColor);
+    }
+    
+    public int produceEgg(){
+        int eggs = 0;
+        if(!this.isAlive())
+            return 0;
+        // if (!this.isAlive() && this.mammaryGland)
+        Random rand = new Random();
+        eggs = rand.nextInt(10);
+        System.out.println("Producing eggs...." + String.valueOf(eggs));
+        
+        return eggs;
     }
 
     // public void produceEggs() {
@@ -455,8 +515,8 @@ public class App {
         ken.showBarn();
         System.out.println();
         ken.getCowMilk();
-        
-
+        ken.getChickenEgg();
+        ken.sellAllAnimal();
         
     }
 }
