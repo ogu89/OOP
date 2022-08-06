@@ -231,6 +231,10 @@ class Person extends Mammal{
         this.barn = new Barn();
     }
 
+    public void getMoneyAUD(){
+        System.out.println(moneyAUD);
+    }
+
     public void getCowMilk(){
         milkContainerL += this.barn.produceCowMilk();
     }
@@ -256,9 +260,9 @@ class Person extends Mammal{
     }
 
     public void sellAllAnimal(){
-        double cowRatio = 5.5;
-        double chickenRatio = 3.3;
-        double horseRatio = 4.7;
+        double cowMeatRatio = 5.5;
+        double chickenMeatRatio = 3.3;
+        double horseMeatRatio = 4.7;
 
         double sellingPrice = 0;
 
@@ -268,9 +272,10 @@ class Person extends Mammal{
             else sellingPrice += this.barn.getAnimalArray().get(i).bmi.getWeightKg();
 
             this.moneyAUD += sellingPrice;
-
         }
+        this.barn.sayGoodByeToAnimal();
     }
+    
     public void showMoney(){
         System.out.println(this.moneyAUD);
     }
@@ -278,13 +283,6 @@ class Person extends Mammal{
     public void showBarn(){
         System.out.println(this.barn);
     }
-
-
-
-    //Question
-    // public void startKeepingAnimal(Animal animal){
-    //     this.barn.addAnimal(animal);
-    // }
 
     public void startKeepingAnimal(Animal animal){
         this.barn.addAnimal(animal);
@@ -295,11 +293,6 @@ class Barn{
     private ArrayList<Animal> animalArray = new ArrayList<Animal>();
 
     public Barn(){}
-
-    //Question
-    // public void addAnimal(Animal animal){
-    //     animalArray.add(animal);
-    // }
 
     public ArrayList<Animal> getAnimalArray(){
         return animalArray;
@@ -334,6 +327,10 @@ class Barn{
         }
         return keepEgg;
     }
+
+    public void sayGoodByeToAnimal(){
+        animalArray.clear();
+    }
 }
 
 
@@ -364,6 +361,7 @@ class Horse extends Mammal{
     public String toString(){
         return "This is horse";
     }
+    
 
 }
 
@@ -498,15 +496,15 @@ public class App {
         
 
 
-        System.out.println();
-        System.out.println(ken);
-        System.out.println();
-        System.out.println(cowcow);
-        System.out.println();
-        System.out.println(horrrse);
-        System.out.println();
-        System.out.println(chicken);
-        System.out.println();
+        // System.out.println();
+        // System.out.println(ken);
+        // System.out.println();
+        // System.out.println(cowcow);
+        // System.out.println();
+        // System.out.println(horrrse);
+        // System.out.println();
+        // System.out.println(chicken);
+        // System.out.println();
         ken.startKeepingAnimal(cowcow);
         ken.startKeepingAnimal(horrrse);
         ken.startKeepingAnimal(chicken);
@@ -517,6 +515,8 @@ public class App {
         ken.getCowMilk();
         ken.getChickenEgg();
         ken.sellAllAnimal();
-        
+        ken.showBarn();
+        ken.getMoneyAUD();
+        System.out.println(cowcow);
     }
 }
