@@ -84,7 +84,36 @@ class Hexadecimal extends Numeric{
     public double getDouble(){
         return Integer.parseInt(this.value,16)+ 0.0;
     }
+
 }
+
+class Octaldecimal extends Numeric{
+    private String value;
+
+    public Octaldecimal(String value){
+        this.value = value;
+    }
+
+    public int getInteger(){
+        int decimal = Integer.parseInt(this.value, 8);
+        return decimal;
+    }
+
+    public double getDouble(){
+        return Integer.parseInt(this.value, 8) + 0.0;
+    }
+
+
+}
+
+
+        // - Numeric を拡張した Octaldecimal 型を実装してください。8 進数（0 - 7 桁）を表す文字列から構成されます。
+        // - Numeric から拡張された BigDecimalNumeric 型を実装してください。"394.4555643321" のような、10 進数を表す文字列によって構築されます。2 つの BigDecimalNumeric の加算を実装してください。
+
+
+
+
+
 
 
 public class App {
@@ -103,16 +132,13 @@ public class App {
         Numeric num2 = new IntegerNumeric(23555461);
         Numeric num3 = new CharNumeric(61);
         Numeric num4 = new Hexadecimal("20C");
+        Numeric num5 = new Octaldecimal("1134");
 
         numericPrinter(num1);
         numericPrinter(num2);
         numericPrinter(num3);
         numericPrinter(num4);
-    
-
-        
-
-        
+        numericPrinter(num5);
         
     }
 }
