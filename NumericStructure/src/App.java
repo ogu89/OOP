@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
+
 abstract class Numeric{
     
 
@@ -64,12 +69,22 @@ class CharNumeric extends Numeric{
     }
 }
 
+class Hexadecimal extends Numeric{
+    private String value;
 
+    public Hexadecimal(String value){
+        this.value = value;
+    }
 
+    public int getInteger(){
+        int decimal=Integer.parseInt(this.value,16);  
+        return decimal;
+    }
 
-
-
-
+    public double getDouble(){
+        return Integer.parseInt(this.value,16)+ 0.0;
+    }
+}
 
 
 public class App {
@@ -87,12 +102,17 @@ public class App {
         Numeric num1 = new IntegerNumeric(73);
         Numeric num2 = new IntegerNumeric(23555461);
         Numeric num3 = new CharNumeric(61);
+        Numeric num4 = new Hexadecimal("20C");
 
         numericPrinter(num1);
         numericPrinter(num2);
         numericPrinter(num3);
+        numericPrinter(num4);
+    
 
+        
 
+        
         
     }
 }
