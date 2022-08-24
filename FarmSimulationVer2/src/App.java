@@ -362,6 +362,14 @@ class Person{
     public String toString(){
         return "This person name is: " + this.name + ", having $" + this.money + " of money";
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
 }
 
 class Barn{
@@ -370,6 +378,9 @@ class Barn{
     private ArrayList<Horse> horseArray = new ArrayList<Horse>();
     private Person manager;
     private Person employy;
+    private double milkContainerL = 0;
+    private int eggContainer = 0;
+    private double assetAUD = 0.0;
     
 
     public Barn(Person mangeer, Person employee){
@@ -391,44 +402,67 @@ class Barn{
     }
 
     public String toString(){
-        return cowArray.toString() + chickenArray.toString() + horseArray.toString();
+        return "Manager is " + this.manager.getName() + "and employee is " + this.employy.getName() + ", having those animals: " + cowArray.toString() + chickenArray.toString() + horseArray.toString();
     }
 
+    public void getCowMilk(){
+        double keepMilk = 0;
+        for(int i = 0; i < cowArray.size(); i++){
+            keepMilk += (cowArray.get(i)).produceMilk();
+        }
+
+        this.milkContainerL += keepMilk;
+        System.out.println("current milk amount is :" + this.milkContainerL + ("(L)"));
+    }
+
+    public void getChickenEgg(){
+        int keepEgg = 0;
+        for(int i = 0; i < chickenArray.size(); i++){
+            keepEgg += (chickenArray.get(i)).produceEgg();
+        }
+        this.eggContainer += keepEgg;
+        System.out.println("current egg amount is :" + this.eggContainer + ("(count)"));
+        
+    }
+
+    public void sellMilk(){
+        if (this.milkContainerL == 0) System.out.println("There is no milk to sell");
+        else{
+            double money = this.milkContainerL * 1.5;
+            this.milkContainerL = 0;
+            System.out.println("You got $" + String.valueOf(money));
+            this.assetAUD += money;
+        }
+        System.out.println("current asset is :" + this.assetAUD);
+    }
+
+    public void sellEgg(){
+        if(this.eggContainer == 0)
+        System.out.println("There is not egg to sell");
+        else{
+            double money = this.eggContainer * 0.7;
+            this.eggContainer = 0;
+            System.out.println("You got " + String.valueOf(money));
+            this.assetAUD += money;
+        }
+        System.out.println("current asset is :" + this.assetAUD);
+    }
+
+    public void sellAllCow(){
+        double cowMeatRatio = 5.5;
+        double chickenMeatRatio = 3.3;
+        double horseMeatRatio = 4.7;
+        double sellingPrice = 0;
 
 
-    // public ArrayList<Animal> getAnimalArray(){
-    //     return animalArray;
-    // }
+        for(int i = 0; i < this.cowArray.size(); i++){
+            sellingPrice += cowArray.get(i).bmi.getWeightKg() * cowMeatRatio;
+        }
+        cowArray.clear();
+        this.assetAUD += sellingPrice;
 
-    // public void addAnimal(Animal animal){
-    //     animalArray.add(animal);
-    // }
-
-    // public String toString(){
-    //     return animalArray.toString();
-    // }
-
-    // public double produceCowMilk(){
-    //     double keepMilk = 0;
-    //     for(int i = 0; i < animalArray.size(); i++){
-    //         // System.out.println(animalArray.get(i).getClass());
-    //         if(animalArray.get(i) instanceof Cow){
-    //             // System.out.println(animalArray.get(i).getClass());
-    //             keepMilk += ((Cow) animalArray.get(i)).produceMilk();
-    //         } 
-    //     }
-    //     return keepMilk;
-    // }
-
-    // public int produceChickenEgg(){
-    //     int keepEgg = 0;
-    //     for(int i = 0; i < animalArray.size(); i++){
-    //         if(animalArray.get(i) instanceof Chicken){
-    //             keepEgg += ((Chicken) animalArray.get(i)).produceEgg();
-    //         }
-    //     }
-    //     return keepEgg;
-    // }
+        System.out.println("current asset is :" + this.assetAUD);
+    }
 
     // public void sayGoodByeToAnimal(){
     //     animalArray.clear();
@@ -447,20 +481,21 @@ public class App {
         Cow cowcow = new Cow(100.2, 60, 5555, "female", 0.5);
         Horse horrrse = new Horse( 130, 50, 1000, "male", 1, 40);
         Chicken chicken = new Chicken(40, 20, 2000, "female", 2, "Brown", 0.5, "hard ans sharp", "white and brown");
-        
+        Person john = new Person("John", 1000);
+        Person mike = new Person("Mike",100);
+        Barn barn1 = new Barn(john, mike);
+        barn1.addCow(cowcow);
+        barn1.addHorse(horrrse);
+        barn1.addChicken(chicken);
+
+        System.out.println(barn1);
+        barn1.getCowMilk();
+        barn1.getChickenEgg();
+        barn1.sellEgg();
+        barn1.sellMilk();
+        barn1.sellAllCow();
 
 
-        // System.out.println();
-        // System.out.println(ken);
-        // System.out.println();
-        // System.out.println(cowcow);
-        // System.out.println();
-        // System.out.println(horrrse);
-        // System.out.println();
-        // System.out.println(chicken);
-        // System.out.println();
 
-
-        System.out.println(cowcow);
     }
 }
