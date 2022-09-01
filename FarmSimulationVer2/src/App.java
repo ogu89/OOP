@@ -402,7 +402,7 @@ class Barn{
     }
 
     public String toString(){
-        return "Manager is " + this.manager.getName() + "and employee is " + this.employy.getName() + ", having those animals: " + cowArray.toString() + chickenArray.toString() + horseArray.toString();
+        return "Manager is " + this.manager.getName() + "and employee is " + this.employy.getName() + ", having those animals: " + cowArray.toString() + chickenArray.toString() + horseArray.toString() +"\nThis barn asset it " + this.assetAUD;
     }
 
     public void getCowMilk(){
@@ -448,21 +448,47 @@ class Barn{
         System.out.println("current asset is :" + this.assetAUD);
     }
 
+
+    
+
     public void sellAllCow(){
         double cowMeatRatio = 5.5;
-        double chickenMeatRatio = 3.3;
-        double horseMeatRatio = 4.7;
         double sellingPrice = 0;
-
 
         for(int i = 0; i < this.cowArray.size(); i++){
             sellingPrice += cowArray.get(i).bmi.getWeightKg() * cowMeatRatio;
         }
+
         cowArray.clear();
         this.assetAUD += sellingPrice;
-
-        System.out.println("current asset is :" + this.assetAUD);
+        System.out.println("current asset is: " + this.assetAUD);
     }
+
+    public void sellAllChicken(){
+        double chickenMeatRatio = 3.3;
+        double sellingPrice = 0;
+        
+        for(int i = 0; i < this.chickenArray.size(); i++){
+            sellingPrice += chickenArray.get(i).bmi.getWeightKg() * chickenMeatRatio;
+        }
+
+        chickenArray.clear();;
+        this.assetAUD += sellingPrice;
+        System.out.println("Current asset is: " + this.assetAUD);
+    }
+
+    public void sellAllHorse(){
+        double horseMeatRatio = 4.7;
+        double sellingPrice = 0;
+        for(int i = 0; i < this.horseArray.size(); i++){
+            sellingPrice += horseArray.get(i).bmi.getWeightKg() * horseMeatRatio;
+        }
+        horseArray.clear();
+        this.assetAUD += sellingPrice;
+        System.out.println("Currsent assest is: " + this.assetAUD);
+
+    }
+
 
     // public void sayGoodByeToAnimal(){
     //     animalArray.clear();
@@ -487,6 +513,7 @@ public class App {
         barn1.addCow(cowcow);
         barn1.addHorse(horrrse);
         barn1.addChicken(chicken);
+        // barn1.addChicken(new Chicken(asdfad));
 
         System.out.println(barn1);
         barn1.getCowMilk();
@@ -494,8 +521,8 @@ public class App {
         barn1.sellEgg();
         barn1.sellMilk();
         barn1.sellAllCow();
-
-
+        barn1.sellAllChicken();
+        System.out.println(barn1);
 
     }
 }
