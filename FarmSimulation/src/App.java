@@ -1,6 +1,5 @@
 import java.util.Date;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 
@@ -260,9 +259,9 @@ class Person extends Mammal{
     }
 
     public void sellAllAnimal(){
-        double cowMeatRatio = 5.5;
-        double chickenMeatRatio = 3.3;
-        double horseMeatRatio = 4.7;
+        // double cowMeatRatio = 5.5;
+        // double chickenMeatRatio = 3.3;
+        // double horseMeatRatio = 4.7;
 
         double sellingPrice = 0;
 
